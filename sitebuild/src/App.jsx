@@ -1,4 +1,5 @@
-import "./App.css";
+import React from 'react';
+import './App.css';
 
 const characters = [
   { name: "Naruto Uzumaki", status: "Alive" },
@@ -13,8 +14,24 @@ const characters = [
   { name: "Minato Namikaze", status: "Deceased" },
 ];
 
+const getStatusColor = (status) => {
+  return status === "Alive" ? "green" : "red";
+};
+
 const App = () => {
-  return <div className="App">App</div>;
+  return (
+    <div className="App">
+      <h1>Naruto Characters</h1>
+      <div className="character-grid">
+        {characters.map((character, index) => (
+          <div className="character-card" key={index}>
+            <div className="character-name">{character.name}</div>
+            <div className="status-indicator" style={{ backgroundColor: getStatusColor(character.status) }}></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default App;
